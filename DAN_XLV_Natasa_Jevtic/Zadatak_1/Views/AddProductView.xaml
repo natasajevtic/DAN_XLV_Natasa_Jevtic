@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zadatak_1.Views"
         mc:Ignorable="d"
-        Title="AddProductView" Height="450" Width="800">
+        Title="Add new product"  MinHeight="250" MinWidth="300" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="1" Content="Product name:"/>
+        <Label Grid.Column="1" Grid.Row="3" Content="Product key:"/>
+        <Label Grid.Column="1" Grid.Row="5" Content="Quantity:"/>
+        <Label Grid.Column="1" Grid.Row="7" Content="Price:"/>
+
+        <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding Product.ProductName}" MinWidth="130"/>
+        <TextBox Grid.Column="3" Grid.Row="3" Text="{Binding Product.ProductKey}"/>
+
+        <TextBox Grid.Column="3" Grid.Row="5" Text="{Binding Product.Quantity}"/>
+        <TextBox Grid.Column="3" Grid.Row="7" Text="{Binding Product.Price}"/>
+
+        <Button Grid.Column="1" Grid.Row="9" Content="Save" Command="{Binding Save}" MinWidth="130"/>
+        <Button Grid.Column="3" Grid.Row="9" Content="Close" Command="{Binding Cancel}"/>
+
     </Grid>
 </Window>
