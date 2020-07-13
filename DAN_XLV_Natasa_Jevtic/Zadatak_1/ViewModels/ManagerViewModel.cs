@@ -142,7 +142,7 @@ namespace Zadatak_1.ViewModels
             return true;
         }
         /// <summary>
-        /// This method invokes method for adding product.
+        /// This method invokes a method for showing a window for adding product.
         /// </summary>
         public void AddProductExecute()
         {
@@ -163,7 +163,7 @@ namespace Zadatak_1.ViewModels
             return true;
         }
         /// <summary>
-        /// This method invokes method for editing product.
+        /// This method invokes a method for showing a window for editing product.
         /// </summary>
         public void EditProductExecute()
         {
