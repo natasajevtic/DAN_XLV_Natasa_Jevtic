@@ -169,7 +169,7 @@ namespace Zadatak_1.ViewModels
         {
             try
             {
-                EditProductView editProductView = new EditProductView();
+                EditProductView editProductView = new EditProductView(Product);
                 editProductView.ShowDialog();
                 ProductList = products.ViewAllProduct();
             }
