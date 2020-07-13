@@ -60,25 +60,45 @@ namespace Zadatak_1.ViewModels
         public WarehouseClerkViewModel(WarehouseClerkView warehouseClerkView)
         {
             this.warehouseClerkView = warehouseClerkView;
-            ProductList = products.ViewAllRecordedProducts();            
+            ProductList = products.ViewAllRecordedProducts();
+            //subscribe on event
+            products.OnNotification += ShowMessage;
         }
 
         public bool CanStoreProductExecute()
         {
             return true;
         }
-
+        /// <summary>
+        /// This method invokes method for storing product.
+        /// </summary>
         public void StoreProductExecute()
         {
             try
             {
                 products.StoreProduct(Product);
-                ProductList = products.ViewAllRecordedProducts();
+                ProductList = products.ViewAllRecordedProducts();                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-        }        
+        }
+        /// <summary>
+        /// This is event handler for OnNotification event. Shows message to user.
+        /// </summary>
+        /// <param name="canStore">Indicator can product be stored.</param>
+        /// <param name="capacity">Capacity of warehouse.</param>
+        public void ShowMessage(bool canStore, int capacity)
+        {
+            if (canStore == true)
+            {
+                MessageBox.Show("Products have been successfully stored. The remaining capacity of the warehouse is " + capacity + " products.", "Notification");
+            }
+            else
+            {
+                MessageBox.Show("Products cannot be stored because there is not enough capacity in the warehouse. " + capacity + " products can be stored.", "Notification");
+            }
+        }
     }
 }

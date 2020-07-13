@@ -6,7 +6,18 @@ using System.Linq;
 namespace Zadatak_1.Models
 {
     class Products : Logger
-    { 
+    {
+        public delegate void Notification(bool canStore, int capacity);
+        public event Notification OnNotification;
+        /// <summary>
+        /// This method raises OnNotification event.
+        /// </summary>
+        /// <param name="canStore">Indicator can product be stored.</param>
+        /// <param name="capacity">Capacity of warehouse.</param>
+        public void Notify(bool canStore, int capacity)
+        {
+            OnNotification?.Invoke(canStore, capacity);
+        }
         /// <summary>
         /// This method creates a list of products.
         /// </summary>
@@ -155,12 +166,14 @@ namespace Zadatak_1.Models
                     {
                         product.Stored = "yes";
                         context.SaveChanges();
-                        remainingCapacity = 100 - capacityOfWarehouseWithNewProduct;                        
+                        remainingCapacity = 100 - capacityOfWarehouseWithNewProduct;
+                        Notify(true, remainingCapacity);
                     }
                     //if capacity higher than 100, then do not store product
                     else
                     {
-                        remainingCapacity = 100 - capacityOfWarehouse;                        
+                        remainingCapacity = 100 - capacityOfWarehouse;
+                        Notify(false, remainingCapacity);
                     }
                 }
             }
