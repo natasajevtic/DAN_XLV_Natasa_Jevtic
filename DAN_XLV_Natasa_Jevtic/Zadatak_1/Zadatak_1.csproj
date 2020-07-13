@@ -79,6 +79,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Logger.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\tblProduct.cs">
       <DependentUpon>Warehouse_Model.tt</DependentUpon>

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Zadatak_1.Models
 {
-    class Products 
+    class Products : Logger
     { 
         /// <summary>
         /// This method creates a list of products.
@@ -38,7 +38,9 @@ namespace Zadatak_1.Models
                 {
                     tblProduct productToDelete = context.tblProducts.Where(x => x.ProductID == productID).FirstOrDefault();
                     context.tblProducts.Remove(productToDelete);
-                    context.SaveChanges();                   
+                    context.SaveChanges();
+                    LogAction("Product with ID " + productToDelete.ProductID + " is deleted. Key: " + productToDelete.ProductKey +
+                        " Name: " + productToDelete.ProductName + " Price: " + productToDelete.Price + " Quantity: " + productToDelete.Quantity);
                 }
             }
             catch (Exception ex)
@@ -67,6 +69,8 @@ namespace Zadatak_1.Models
                     context.tblProducts.Add(product);
                     context.SaveChanges();
                     productToAdd.ProductID = product.ProductID;
+                    LogAction("Product with ID " + productToAdd.ProductID + " is added. Key: " + productToAdd.ProductKey +
+                        " Name: " + productToAdd.ProductName + " Price: " + productToAdd.Price + " Quantity: " + productToAdd.Quantity);
                 }
             }
             catch (Exception ex)
@@ -91,6 +95,8 @@ namespace Zadatak_1.Models
                     productToEdit.Quantity = product.Quantity;
                     productToEdit.Price = product.Price;
                     context.SaveChanges();
+                    LogAction("Product with ID " + productToEdit.ProductID + " is updated. Key: " + productToEdit.ProductKey +
+                        " Name: " + productToEdit.ProductName + " Price: " + productToEdit.Price + " Quantity: " + productToEdit.Quantity);
                     return product;
                 }
             }
